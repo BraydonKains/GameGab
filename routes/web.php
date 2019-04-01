@@ -22,3 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test', function() {
     return view("dashboard");
 });
+
+Route::get('/test/{id}', function() {
+    return view("thread");
+});

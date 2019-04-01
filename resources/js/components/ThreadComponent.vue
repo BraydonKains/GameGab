@@ -3,7 +3,7 @@
         <h2>Browse Threads</h2>
         <div class="card card-body" v-for="thread in threads" v-bind:key="thread.id">
             <p>{{ thread.creator.name }}
-            <h3>{{ thread.thread_title }}</h3>
+            <a href="./test/{ {{ thread.id }} }"><h3>{{ thread.thread_title }}</h3></a>
         </div>
     </div>
 </template>
