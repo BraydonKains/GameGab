@@ -36,4 +36,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the threads the user has posted.
+     */
+    public function threads() {
+        return $this->hasMany('App\Thread');
+    }
+
+    /**
+     * Get the posts the user has made.
+     */
+    public function posts() {
+        return $this->hasMany('App\Post');
+    }
+
+    /**
+     * Get the tags the user has created.
+     */
+    public function tags() {
+        return $this->hasMany('App\Tag');
+    }
 }

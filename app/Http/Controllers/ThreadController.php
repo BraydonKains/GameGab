@@ -14,7 +14,9 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        //
+        $threads = Thread::orderBy('created_at', 'desc')->paginate(20);
+
+        return Thread::collection($threads);
     }
 
     /**
@@ -24,7 +26,7 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        //
+        return view("create_thread");
     }
 
     /**
@@ -35,7 +37,12 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $thread = new Thread;
+        
+        $thread->thread_title = $request->thread_title;
+        $thread->thread_poster_id = $request->user_id;
+
+        $thread->save();
     }
 
     /**
@@ -46,7 +53,7 @@ class ThreadController extends Controller
      */
     public function show(Thread $thread)
     {
-        //
+        return view("thread_view")->withThread($thread);
     }
 
     /**
