@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Thread;
+use App\Http\Resources\ThreadsCollection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class ThreadController extends Controller
 {
@@ -14,9 +16,7 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        $threads = Thread::orderBy('created_at', 'desc')->paginate(20);
-
-        return Thread::collection($threads);
+        return new ThreadsCollection(Thread::with("creator")->get()->sortByDesc('created_at'));
     }
 
     /**

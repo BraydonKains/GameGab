@@ -1,4 +1,12 @@
-
+<template>
+    <div>
+        <h2>Browse Threads</h2>
+        <div class="card card-body" v-for="thread in threads" v-bind:key="thread.id">
+            <p>{{ thread.creator.name }}
+            <h3>{{ thread.thread_title }}</h3>
+        </div>
+    </div>
+</template>
 
 <script>
 export default {
@@ -7,11 +15,12 @@ export default {
             threads: [],
             thread: {
                 id: '',
-                title: '',
-                creator: ''
+                thread_title: '',
+                creator: {
+                    name: ''
+                },
             },
             thread_id: '',
-            pagination: {},
             edit: false
         }
     },
@@ -23,10 +32,10 @@ export default {
     methods: {
         fetchThreads() {
             fetch("api/threads")
-                .then(res => json())
+                .then(res => res.json())
                 .then(res => {
-                    console.log(res.data);
-                })
+                    this.threads = res.data;
+                });
         }
     }
 }

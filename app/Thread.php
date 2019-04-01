@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
 {
-    //
+    private $creator_name;
 
     /**
      * Get the creator of the thread.
