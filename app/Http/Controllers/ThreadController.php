@@ -48,11 +48,13 @@ class ThreadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Thread  $thread
+     * @param integer $id
+     *  - A thread ID
      * @return \Illuminate\Http\Response
      */
-    public function show(Thread $thread)
+    public function show(integer $id)
     {
+        $thread = ThreadsCollection(Thread::find($id)->with("posts")->get());
         return view("thread_view")->withThread($thread);
     }
 
@@ -64,7 +66,7 @@ class ThreadController extends Controller
      */
     public function edit(Thread $thread)
     {
-        //
+        return view("edit")->withThread($thread);
     }
 
     /**
@@ -76,7 +78,8 @@ class ThreadController extends Controller
      */
     public function update(Request $request, Thread $thread)
     {
-        //
+        $thread->thread_title = $request->thread_title;
+        $thread->save();
     }
 
     /**

@@ -19,6 +19,9 @@ class ThreadsCollection extends ResourceCollection
         ];
     }
 
+    /**
+     * Deprecated, kept for posterity.
+     */
     public function getCreators() {
         foreach($this->collection as &$t) {
             $creator = $t->creator;

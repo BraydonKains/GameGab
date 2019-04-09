@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\PostCollection;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -10,9 +11,10 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param integer $thread_id
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Thread $thread)
     {
         //
     }
@@ -22,9 +24,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Thread $thread)
     {
-        //
+        return view("create_post")->withThread($thread);
     }
 
     /**
@@ -35,18 +37,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $post = new Post;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Post $post)
-    {
-        //
+        $post->poster_id = $request->user_id;
+        $post->content = $request->content;
+        $post->thread_id = $request->thread_id;
+
+        $post->save();
     }
 
     /**
@@ -57,7 +54,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view("edit_post")->withPost($post);
     }
 
     /**
@@ -69,7 +66,9 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->content = $request->content;
+
+        $post->save();
     }
 
     /**
