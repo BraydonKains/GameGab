@@ -2,8 +2,8 @@
     <div>
         <h2>Browse Threads</h2>
         <div class="card card-body" v-for="thread in threads" v-bind:key="thread.id">
-            <p>{{ thread.creator.name }}
-            <a href="./test/{ {{ thread.id }} }"><h3>{{ thread.thread_title }}</h3></a>
+            <p>{{ thread.creator.name }}</p>
+            <a v-bind:href="'./test/' + thread.id"><h3>{{ thread.thread_title }}</h3></a>
         </div>
     </div>
 </template>

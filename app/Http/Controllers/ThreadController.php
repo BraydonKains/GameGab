@@ -51,7 +51,7 @@ class ThreadController extends Controller
         $thread = new Thread;
         
         $thread->thread_title = $request->thread_title;
-        $thread->thread_poster_id = $request->user_id;
+        $thread->thread_creator_id = $request->user_id;
 
         $thread->save();
     }
@@ -63,10 +63,10 @@ class ThreadController extends Controller
      *  - A thread ID
      * @return \Illuminate\Http\Response
      */
-    public function show(integer $id)
+    public function show(int $id)
     {
-        $thread = ThreadsCollection(Thread::find($id)->with("posts")->get());
-        return view("thread_view")->withThread($thread);
+        $selected_thread = new ThreadsCollection(Thread::with("posts")->get()->where("id", $id));
+        return $selected_thread;
     }
 
     /**

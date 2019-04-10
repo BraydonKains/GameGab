@@ -36855,8 +36855,11 @@ var render = function() {
       _vm._v(" "),
       _vm._l(_vm.threads, function(thread) {
         return _c("div", { key: thread.id, staticClass: "card card-body" }, [
-          _c("p", [_vm._v(_vm._s(thread.creator.name) + "\n        ")]),
-          _c("h3", [_vm._v(_vm._s(thread.thread_title))])
+          _c("p", [_vm._v(_vm._s(thread.creator.name))]),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "./test/" + thread.id } }, [
+            _c("h3", [_vm._v(_vm._s(thread.thread_title))])
+          ])
         ])
       })
     ],

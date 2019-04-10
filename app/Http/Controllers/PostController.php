@@ -9,24 +9,13 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @param integer $thread_id
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Thread $thread)
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Thread $thread)
+    public function create(Thread $post)
     {
-        return view("create_post")->withThread($thread);
+        return view("create_post")->withThread($post);
     }
 
     /**
