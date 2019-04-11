@@ -58,7 +58,7 @@ class ThreadController extends Controller
     public function store(Request $request)
     {
         $thread = new Thread;
-        
+//dd($request);
         $thread->thread_title = $request->thread_title;
         $thread->thread_creator_id = $request->user_id;
 
@@ -95,11 +95,11 @@ class ThreadController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Thread  $thread
+     * @param  int $int
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Thread $thread)
+    public function destroy(int $id)
     {
-        $thread->delete();
+        Thread::find($id)->delete();
     }
 }

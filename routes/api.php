@@ -25,11 +25,11 @@ $thread_prefix = "thread";
 //Gets
 Route::get('threads', 'ThreadController@index');
 Route::get($thread_prefix . '/{id}', 'ThreadController@show');
+Route::get($thread_prefix  . '/destroy/{id}', 'ThreadController@destroy');
 
 //Posts
 Route::post($thread_prefix . '/update/{thread}', 'ThreadController@update');
 Route::post($thread_prefix . '/store', 'ThreadController@store');
-Route::post($thread_prefix  . '/destroy/{thread}', 'ThreadController@destroy');
 
 /**
  * Post routes
@@ -37,11 +37,11 @@ Route::post($thread_prefix  . '/destroy/{thread}', 'ThreadController@destroy');
 $post_prefix = "post";
 //Gets
 Route::get($post_prefix . '/thread/{thread_id}', 'PostController@show');
+Route::get($post_prefix  . '/destroy/{id}', 'PostController@destroy');
 
 //Posts
 Route::post($post_prefix . '/update/{post}', 'PostController@update');
 Route::post($post_prefix . '/store', 'PostController@store');
-Route::post($post_prefix  . '/destroy/{post}', 'PostController@destroy');
 
  /**
   * Tag routes

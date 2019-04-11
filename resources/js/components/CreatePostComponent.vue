@@ -1,44 +1,44 @@
 <template>
-<form @submit.prevent="createThread" class="mb-3">
+<form @submit.prevent="addPost" class="mb-3">
     <h3>
-        Create Thread
+        Write Post
     </h3>
     <div class="form-group">
-        <input type="text" class="form-control" placeholder="Title" v-model="thread_title">
+        <textarea type="text" class="form-control" placeholder="Add to your post..." v-model="content"></textarea>
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create Thread</button>
+        <button type="submit" class="btn btn-primary">Add</button>
     </div>
 </form>
 </template>
 
 <script>
 export default {
-    props: ['user_id'],
+    props: ['user_id', 'thread_id'],
 
     data() {
         return {
-            thread_title: '',
+            content: '',
             edit: true
         }
     },
 
     methods: {
-        createThread() {
-            fetch("api/thread/store", {
+        addPost() {
+            fetch("../api/post/store", {
                 method: "post",
                 credentials: "same-origin",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    "thread_title": this.thread_title,
+                    "content": this.content,
+                    "thread_id": this.thread_id,
                     "user_id": this.user_id
                 })
             })
             .then(res => {
-                console.log(res);
-                this.thread_title = '';
+                this.content = '';
                 this.$emit("submitted");
             })
             .catch(err => console.log(err));
