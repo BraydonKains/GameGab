@@ -21,8 +21,9 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('thread-component', require('./components/ThreadComponent.vue').default);
-Vue.component('tag_selector', require('./components/TagSelectComponent.vue').default);
-Vue.component('thread-create-form', require('./components/CreateThreadComponent.vue').default);
+Vue.component('thread-view', require('./components/ThreadViewComponent.vue').default);
+Vue.component('thread-create', require('./components/CreateThreadComponent.vue').default);
+//Vue.component('tag_selector', require('./components/TagSelectComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

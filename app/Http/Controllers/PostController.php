@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use App\PostCollection;
+use App\Http\Resources\PostCollection;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -27,6 +27,17 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         return view("edit_post")->withPost($post);
+    }
+
+    /**
+     * Show the posts for a certain thread.
+     * 
+     * @param int $thread
+     */
+    public function show(int $thread_id) {
+        $posts = new PostCollection(Post::with("poster")->get()->where("thread_id", $thread_id));
+//dd($posts);
+        return $posts;
     }
 
     /**

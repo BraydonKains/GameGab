@@ -30,6 +30,15 @@ class ThreadController extends Controller
     }
 
     /**
+     * Show thread view.
+     * 
+     * @param int $thread
+     */
+    public function view_thread(int $thread_id) {
+        return view("thread")->with("thread_id", $thread_id);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Thread  $thread
@@ -65,8 +74,9 @@ class ThreadController extends Controller
      */
     public function show(int $id)
     {
-        $selected_thread = new ThreadsCollection(Thread::with("posts")->get()->where("id", $id));
-        return $selected_thread;
+        $selected_thread = new ThreadsCollection(Thread::with("creator")->get()->where("id", $id));
+//dd(Thread::with("posts")->get()->where("id", $id));
+        return Thread::with("creator")->find($id);//$selected_thread;
     }
 
     /**

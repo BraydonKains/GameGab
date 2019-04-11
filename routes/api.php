@@ -35,6 +35,8 @@ Route::post($thread_prefix  . '/destroy/{thread}', 'ThreadController@destroy');
  * Post routes
  */
 $post_prefix = "post";
+//Gets
+Route::get($post_prefix . '/thread/{thread_id}', 'PostController@show');
 
 //Posts
 Route::post($post_prefix . '/update/{post}', 'PostController@update');

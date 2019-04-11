@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <button onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-primary">Logout</button>
                 </div>
             </div>
         </div>

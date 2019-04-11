@@ -12,17 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/home');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/test', function() {
-    return view("dashboard");
-});
+Route::get('/threads', function() {
+    return view("threads");
+})->name('threads');
 
-Route::get('/test/{id}', function() {
-    return view("thread");
-});
+Route::get('/test/{thread_id}', "ThreadController@view_thread");
