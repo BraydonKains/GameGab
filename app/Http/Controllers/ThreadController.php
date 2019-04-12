@@ -30,30 +30,12 @@ class ThreadController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Show thread view.
+     * 
+     * @param int $thread
      */
-    public function store(Request $request)
-    {
-        $thread = new Thread;
-        
-        $thread->thread_title = $request->thread_title;
-        $thread->thread_poster_id = $request->user_id;
-
-        $thread->save();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Thread  $thread
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Thread $thread)
-    {
-        return view("thread_view")->withThread($thread);
+    public function view_thread(int $thread_id) {
+        return view("thread")->with("thread_id", $thread_id);
     }
 
     /**
@@ -64,7 +46,37 @@ class ThreadController extends Controller
      */
     public function edit(Thread $thread)
     {
-        //
+        return view("edit")->withThread($thread);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $thread = new Thread;
+//dd($request);
+        $thread->thread_title = $request->thread_title;
+        $thread->thread_creator_id = $request->user_id;
+
+        $thread->save();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param integer $id
+     *  - A thread ID
+     * @return \Illuminate\Http\Response
+     */
+    public function show(int $id)
+    {
+        $selected_thread = new ThreadsCollection(Thread::with("creator")->get()->where("id", $id));
+//dd(Thread::with("posts")->get()->where("id", $id));
+        return Thread::with("creator")->find($id);//$selected_thread;
     }
 
     /**
@@ -76,17 +88,18 @@ class ThreadController extends Controller
      */
     public function update(Request $request, Thread $thread)
     {
-        //
+        $thread->thread_title = $request->thread_title;
+        $thread->save();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Thread  $thread
+     * @param  int $int
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Thread $thread)
+    public function destroy(int $id)
     {
-        //
+        Thread::find($id)->delete();
     }
 }

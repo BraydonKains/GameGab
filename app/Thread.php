@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
 {
-    private $creator_name;
-
     /**
      * Get the creator of the thread.
      */
@@ -20,5 +18,12 @@ class Thread extends Model
      */
     public function tags() {
         return $this->belongsToMany('App\Tag');
+    }
+
+    /**
+     * Get the posts for the thread.
+     */
+    public function posts() {
+        return $this->hasMany('App\Post');
     }
 }
