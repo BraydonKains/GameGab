@@ -24,6 +24,7 @@ Vue.component('thread-collection', require('./components/ThreadComponent.vue').d
 Vue.component('thread-view', require('./components/ThreadViewComponent.vue').default);
 Vue.component('thread-create', require('./components/CreateThreadComponent.vue').default);
 Vue.component('post-create', require('./components/CreatePostComponent.vue').default);
+Vue.component('gif-select', require('./components/GifSelectComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

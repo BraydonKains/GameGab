@@ -7,6 +7,9 @@
         <textarea type="text" class="form-control" placeholder="Add to your post..." v-model="content"></textarea>
     </div>
     <div class="form-group">
+        <gif-select></gif-select>
+    </div>
+    <div class="form-group">
         <button type="submit" class="btn btn-primary">Add</button>
     </div>
 </form>
